@@ -2,16 +2,15 @@ package Objetos;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Trabajador extends Cuenta {
    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
    Date date = new Date();
-   ArrayList<String> entradas=new ArrayList();
-   ArrayList<String> salidas=new ArrayList();
+   Date[] entradas=new Date[100];
+   Date[] salidas=new Date[100];
    int atrazos=0;
-   
+   int contador=0;
     public Trabajador(String nombre,String contraseña) {
         super.nombreCuenta=nombre;
         super.contraseña=contraseña;
@@ -20,15 +19,21 @@ public class Trabajador extends Cuenta {
     
     
     public void registrarEntrada(){
-        entradas.add(date.toString());
+        entradas[contador]=date;
+        contador=contador+1;
     }
     
     public void registrarSalida(){
-        salidas.add(date.toString());
+        salidas[contador]=date;
+        contador=contador+1;
     }
     
     public int verAtrazos(){
     return atrazos;
+    }
+    
+    public void atrazo(){
+        atrazos=atrazos+1;
     }
     
 }
