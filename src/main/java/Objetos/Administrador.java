@@ -15,44 +15,44 @@ public class Administrador extends Cuenta {
         return n.verSalidasA();
     }
     
-    public void establecerHoraEntrada(int h,int m){
+    public static void establecerHoraEntrada(int h,int m){
         setHoraEntrada(h);
         setMinutosEntrada(m);
     }
     
-    public void establecerHoraSalida(int h,int m){
+    public static void establecerHoraSalida(int h,int m){
         setHoraESalida(h);
         setMinutosSalida(m);
     }
     
     public void verHorasEntradaSalida(){
-        System.out.println("La hora de entrada es: "+super.horaEntrada+":"+super.minutosEntrada);
-        System.out.println("La hora de salida es: "+super.horaSalida+":"+super.minutosSalida);
+        System.out.println("La hora de entrada es: "+Cuenta.horaEntrada+":"+Cuenta.minutosEntrada);
+        System.out.println("La hora de salida es: "+Cuenta.horaSalida+":"+Cuenta.minutosSalida);
     }
     
-    public void setHoraEntrada(int n){
-        super.horaEntrada=n;
+    public static void setHoraEntrada(int n){
+        Cuenta.horaEntrada=n;
     }
-    public void setMinutosEntrada(int n){
-        super.minutosEntrada=n;
+    public static void setMinutosEntrada(int n){
+        Cuenta.minutosEntrada=n;
     }
-    public int getHoraEntrada(){
-        return super.horaEntrada;
+    public static  int getHoraEntrada(){
+        return Cuenta.horaEntrada;
     }
-    public int getMinutosEntrada(){
-        return super.minutosEntrada;
+    public static int getMinutosEntrada(){
+        return Cuenta.minutosEntrada;
     }
-    public void setHoraESalida(int n){
-        super.horaSalida=n;
+    public static void setHoraESalida(int n){
+        Cuenta.horaSalida=n;
     }
-    public void setMinutosSalida(int n){
-        super.minutosSalida=n;
+    public static void setMinutosSalida(int n){
+        Cuenta.minutosSalida=n;
     }
-    public int getHoraSalida(){
-        return super.horaSalida;
+    public static int getHoraSalida(){
+        return Cuenta.horaSalida;
     }
-    public int getMinutosSalida(){
-        return super.minutosSalida;
+    public static int getMinutosSalida(){
+        return Cuenta.minutosSalida;
     }
     
     public void setNombreCuenta(String nombre){
@@ -61,4 +61,13 @@ public class Administrador extends Cuenta {
     public void setContraseña(String contra){
         this.contraseña=contra;
     }
+
+    public String getNombreCuenta() {
+        return nombreCuenta;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+    
 }
