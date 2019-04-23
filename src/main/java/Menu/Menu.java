@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class Menu {
 
-    ArrayList<Administrador> adm = new ArrayList();
-    ArrayList<Trabajador> trab = new ArrayList();
+    static ArrayList<Administrador> adm = new ArrayList();
+    static ArrayList<Trabajador> trab = new ArrayList();
 
     public void inicio() {
         boolean estado = true;
@@ -64,15 +64,20 @@ public class Menu {
             System.out.println("3. atrás");
             int opcion = recibirValidarNumero();
             switch (opcion) {
-                case 1: crearCuentaA(adm);
-                        break;
+                case 1:
+                    crearCuentaA(adm);
+                    break;
                 case 2:
                     System.out.println("Ingrese nombre de cuenta");
                     String nombre = recibirPalabra();
                     System.out.println("Ingrese contraseña");
                     String contra = recibirPalabra();
                     int a = comprobarUsuarioConA(nombre, contra, adm);
+                    if(a==-1){
+                        System.out.println("Intente nuevamente");
+                    }else{
                     menuAdministracion(a, adm);
+                    }
                     break;
                 case 3:
                     estado = false;
@@ -82,24 +87,23 @@ public class Menu {
         }
 
     }
-    
-    public void crearCuentaA(ArrayList<Administrador> m){
-        String n="1234";
+
+    public void crearCuentaA(ArrayList<Administrador> m) {
+        String n = "1234";
         System.out.println("Ingrese la contraseña de super administrador");
-        String contra=recibirPalabra();
-        if(contra.equals(n)){
+        String contra = recibirPalabra();
+        if (contra.equals(n)) {
             System.out.println("ingrese el nombre de la nueva cuenta");
-            String nombre=recibirPalabra();
+            String nombre = recibirPalabra();
             System.out.println("Ingrese la contraseña de la nueva cuenta");
-            String contraseña=recibirPalabra();
-            Administrador a=new Administrador(nombre,contraseña);
+            String contraseña = recibirPalabra();
+            Administrador a = new Administrador(nombre, contraseña);
             m.add(a);
             System.out.println("Cuenta creada con exito");
-        }else{
+        } else {
             System.out.println("contraseña incorrecta");
         }
     }
-    
 
     public static String recibirPalabra() {
         String num = " ";
@@ -135,7 +139,11 @@ public class Menu {
                     System.out.println("Ingrese contraseña");
                     String contra = recibirPalabra();
                     int a = comprobarUsuarioConT(nombre, contra, trab);
-                    menuRegistroES(a, trab);
+                    if (a == -1) {
+                        System.out.println("intente nuevamente");
+                    } else {
+                        menuRegistroES(a, trab);
+                    }
                     break;
                 case 2:
                     estado = false;
@@ -146,35 +154,42 @@ public class Menu {
     }
 
     public static int comprobarUsuarioConT(String nombre, String contra, ArrayList<Trabajador> m) {
-        int posicion = 0;
+        int posicion = -1;
+        try{
         for (int i = 0; i < m.size(); i++) {
             if (nombre.equals(m.get(i).getNombreCuenta())) {
                 if (contra.equals(m.get(i).getContraseña())) {
                     System.out.println("Sesion iniciada");
                     posicion = i;
-                } else {
-                    System.out.println("contraseña incorrecta");
                 }
-            } else {
-                System.out.println("Usuario incorrecto");
             }
         }
+        if(posicion==-1){
+        System.out.println("usuario o contraseña incorrecta");
+        }
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("no hay cuentas registras problablemente");
+        }
         return posicion;
+
     }
 
     public static int comprobarUsuarioConA(String nombre, String contra, ArrayList<Administrador> m) {
-        int posicion = 0;
+        int posicion = -1;
+        try{
         for (int i = 0; i < m.size(); i++) {
             if (nombre.equals(m.get(i).getNombreCuenta())) {
                 if (contra.equals(m.get(i).getContraseña())) {
                     System.out.println("Sesion iniciada");
                     posicion = i;
-                } else {
-                    System.out.println("contraseña incorrecta");
                 }
-            } else {
-                System.out.println("Usuario incorrecto");
             }
+        }
+        if (posicion == -1) {
+            System.out.println("usuario o contraseña incorrecta");
+        }
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("no hay cuentas registras problablemente");
         }
         return posicion;
     }
@@ -229,8 +244,9 @@ public class Menu {
                 case 5:
                     establecerH(n, m);
                     break;
-                case 6: eliminarCuentaE(trab);
-                        break;
+                case 6:
+                    eliminarCuentaE(trab);
+                    break;
                 case 7:
                     estado = false;
                     break;
@@ -263,23 +279,23 @@ public class Menu {
 
     public void crearCuentaEmpleado(ArrayList<Trabajador> b) {
         System.out.println("Ingrese el nombre de la nueva cuenta");
-        String nombre=recibirPalabra();
+        String nombre = recibirPalabra();
         System.out.println("Ingrese la contraseña de la nueva cuenta");
-        String contra=recibirPalabra();
-        Trabajador t=new Trabajador(nombre,contra);
+        String contra = recibirPalabra();
+        Trabajador t = new Trabajador(nombre, contra);
         b.add(t);
     }
 
     public void verRegistros(ArrayList<Trabajador> b) {
         verEmpleados(b);
         System.out.println("¿De que empleado desea ver el registro? (ingrese su numero)");
-        int n = recibirValidarNumero();       
-        try{
-        System.out.println("Sus atrasos:");
-        System.out.println(b.get(n).verAtrazos());
-        System.out.println("Sus salidas anticipadas:");
-        System.out.println(b.get(n).verSalidasA());
-        }catch(IndexOutOfBoundsException e){
+        int n = recibirValidarNumero();
+        try {
+            System.out.println("Sus atrasos:");
+            System.out.println(b.get(n).verAtrazos());
+            System.out.println("Sus salidas anticipadas:");
+            System.out.println(b.get(n).verSalidasA());
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("El empleado seleccionado no esta en la lista");
         }
     }
@@ -288,27 +304,27 @@ public class Menu {
         verEmpleados(b);
         System.out.println("¿Que cuenta de empleado desea administrar? (ingrese su numero)");
         int n = recibirValidarNumero();
-        try{
-        System.out.println("¿Que desea cambiar?");
-        System.out.println("1. Nombre cuenta");
-        System.out.println("2. Contraseña cuenta");
-        System.out.println("3. atrás");
-        int m = recibirValidarNumero();
-        switch (m) {
-            case 1:
-                System.out.println("Ingrese nuevo nombre");
-                String nombre = recibirPalabra();
-                b.get(n).setNombreCuenta(nombre);
-                break;
-            case 2:
-                System.out.println("Ingrese nueva contraseña");
-                String contra = recibirPalabra();
-                b.get(n).setContraseña(contra);
-                break;
-            case 3:
-                break;
-        }
-        }catch(IndexOutOfBoundsException e){
+        try {
+            System.out.println("¿Que desea cambiar?");
+            System.out.println("1. Nombre cuenta");
+            System.out.println("2. Contraseña cuenta");
+            System.out.println("3. atrás");
+            int m = recibirValidarNumero();
+            switch (m) {
+                case 1:
+                    System.out.println("Ingrese nuevo nombre");
+                    String nombre = recibirPalabra();
+                    b.get(n).setNombreCuenta(nombre);
+                    break;
+                case 2:
+                    System.out.println("Ingrese nueva contraseña");
+                    String contra = recibirPalabra();
+                    b.get(n).setContraseña(contra);
+                    break;
+                case 3:
+                    break;
+            }
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("El empleado seleccionado no esta en la lista");
         }
     }
@@ -333,14 +349,14 @@ public class Menu {
             System.out.println(i + ". " + m.get(i).getNombreCuenta());
         }
     }
-    
-    public void eliminarCuentaE(ArrayList<Trabajador> b){
-    verEmpleados(b);
+
+    public void eliminarCuentaE(ArrayList<Trabajador> b) {
+        verEmpleados(b);
         System.out.println("Ingrese el numero de cuenta que desea eliminar");
-        int n=recibirValidarNumero();
-        try{
+        int n = recibirValidarNumero();
+        try {
             b.remove(n);
-        }catch(IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("El empleado seleccionado no esta en la lista");
         }
     }
