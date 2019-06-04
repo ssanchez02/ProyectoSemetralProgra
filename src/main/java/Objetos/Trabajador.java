@@ -7,8 +7,8 @@ import java.util.Date;
 
 public class Trabajador extends Cuenta {
 
-    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-    Date date = new Date();
+    private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    private Date date = new Date();
     private Date[] entradas = new Date[100];
     private Date[] salidas = new Date[100];
     private int atrazos = 0;
