@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class Menu {
 
-    static ArrayList<Administrador> adm = new ArrayList();
-    static ArrayList<Trabajador> trab = new ArrayList();
+    private static ArrayList<Administrador> adm = new ArrayList();
+    private static ArrayList<Trabajador> trab = new ArrayList();
 
     public void inicio() {
         boolean estado = true;

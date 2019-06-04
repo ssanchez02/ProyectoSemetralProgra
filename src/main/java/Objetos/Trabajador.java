@@ -9,11 +9,11 @@ public class Trabajador extends Cuenta {
 
     DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     Date date = new Date();
-    Date[] entradas = new Date[100];
-    Date[] salidas = new Date[100];
-    int atrazos = 0;
-    int contador = 0;
-    int salidaAnticipada=0;
+    private Date[] entradas = new Date[100];
+    private Date[] salidas = new Date[100];
+    private int atrazos = 0;
+    private int contador = 0;
+    private int salidaAnticipada=0;
 
     public Trabajador(String nombre, String contraseña) {
         super.nombreCuenta = nombre;
