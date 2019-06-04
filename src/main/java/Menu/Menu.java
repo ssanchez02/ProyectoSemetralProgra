@@ -35,7 +35,7 @@ public class Menu {
         }
     }
 
-    public static int recibirValidarNumero() {
+    private static int recibirValidarNumero() {
         int num = 0;
         boolean estado = true;
 
@@ -56,7 +56,7 @@ public class Menu {
         return num;
     }
 
-    public void menuAdministrador() {
+    private void menuAdministrador() {
         boolean estado = true;
         while (estado) {
             System.out.println("1. Crear cuenta de administrador");
@@ -88,7 +88,7 @@ public class Menu {
 
     }
 
-    public void crearCuentaA(ArrayList<Administrador> m) {
+    private void crearCuentaA(ArrayList<Administrador> m) {
         String n = "1234";
         System.out.println("Ingrese la contraseña de super administrador");
         String contra = recibirPalabra();
@@ -105,7 +105,7 @@ public class Menu {
         }
     }
 
-    public static String recibirPalabra() {
+    private static String recibirPalabra() {
         String num = " ";
         boolean estado = true;
 
@@ -126,7 +126,7 @@ public class Menu {
         return num;
     }
 
-    public void menuEmpleado() {
+    private void menuEmpleado() {
         boolean estado = true;
         while (estado) {
             System.out.println("1. iniciar sesión de Empleado");
@@ -153,7 +153,7 @@ public class Menu {
         }
     }
 
-    public static int comprobarUsuarioConT(String nombre, String contra, ArrayList<Trabajador> m) {
+    private static int comprobarUsuarioConT(String nombre, String contra, ArrayList<Trabajador> m) {
         int posicion = -1;
         try{
         for (int i = 0; i < m.size(); i++) {
@@ -174,7 +174,7 @@ public class Menu {
 
     }
 
-    public static int comprobarUsuarioConA(String nombre, String contra, ArrayList<Administrador> m) {
+    private static int comprobarUsuarioConA(String nombre, String contra, ArrayList<Administrador> m) {
         int posicion = -1;
         try{
         for (int i = 0; i < m.size(); i++) {
@@ -194,7 +194,7 @@ public class Menu {
         return posicion;
     }
 
-    public void menuRegistroES(int n, ArrayList<Trabajador> a) {
+    private void menuRegistroES(int n, ArrayList<Trabajador> a) {
         boolean estado = true;
         while (estado) {
             System.out.println("1. Registrar entrada");
@@ -217,7 +217,7 @@ public class Menu {
 
     }
 
-    public void menuAdministracion(int n, ArrayList<Administrador> m) {
+    private void menuAdministracion(int n, ArrayList<Administrador> m) {
         boolean estado = true;
         while (estado) {
             System.out.println("1. Administrar cuenta de empleado");
@@ -255,7 +255,7 @@ public class Menu {
         }
     }
 
-    public void administrarCuentaA(int n, ArrayList<Administrador> m) {
+    private void administrarCuentaA(int n, ArrayList<Administrador> m) {
         System.out.println("¿que desea cambiar?");
         System.out.println("1. Cambiar nombre de la cuenta");
         System.out.println("2. Cambiar contraseña de la cuenta");
@@ -277,7 +277,7 @@ public class Menu {
 
     }
 
-    public void crearCuentaEmpleado(ArrayList<Trabajador> b) {
+    private void crearCuentaEmpleado(ArrayList<Trabajador> b) {
         System.out.println("Ingrese el nombre de la nueva cuenta");
         String nombre = recibirPalabra();
         System.out.println("Ingrese la contraseña de la nueva cuenta");
@@ -286,7 +286,7 @@ public class Menu {
         b.add(t);
     }
 
-    public void verRegistros(ArrayList<Trabajador> b) {
+    private void verRegistros(ArrayList<Trabajador> b) {
         verEmpleados(b);
         System.out.println("¿De que empleado desea ver el registro? (ingrese su numero)");
         int n = recibirValidarNumero();
@@ -300,7 +300,7 @@ public class Menu {
         }
     }
 
-    public void administrarCuentaE(ArrayList<Trabajador> b) {
+    private void administrarCuentaE(ArrayList<Trabajador> b) {
         verEmpleados(b);
         System.out.println("¿Que cuenta de empleado desea administrar? (ingrese su numero)");
         int n = recibirValidarNumero();
@@ -329,7 +329,7 @@ public class Menu {
         }
     }
 
-    public void establecerH(int n, ArrayList<Administrador> b) {
+    private void establecerH(int n, ArrayList<Administrador> b) {
         System.out.println("Ingrese el horario de entrada");
         System.out.println("La hora");
         int he = recibirValidarNumero();
@@ -344,13 +344,13 @@ public class Menu {
         b.get(n).establecerHoraSalida(hs, ms);
     }
 
-    public void verEmpleados(ArrayList<Trabajador> m) {
+    private void verEmpleados(ArrayList<Trabajador> m) {
         for (int i = 0; i < m.size(); i++) {
             System.out.println(i + ". " + m.get(i).getNombreCuenta());
         }
     }
 
-    public void eliminarCuentaE(ArrayList<Trabajador> b) {
+    private void eliminarCuentaE(ArrayList<Trabajador> b) {
         verEmpleados(b);
         System.out.println("Ingrese el numero de cuenta que desea eliminar");
         int n = recibirValidarNumero();
